@@ -1,6 +1,10 @@
+import 'react-app-polyfill/ie11';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { usePromiseState } from '../src';
+
+const container = document.getElementById('root');
+const root = createRoot(container!);
 
 const App = () => {
   const { data, status } = usePromiseState<string>({
@@ -15,4 +19,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+root.render(<App />);
