@@ -13,8 +13,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: yarn install --frozen-lockfile
-      - run: yarn test
+      - name: Test package
+        run: |
+          yarn install --frozen-lockfile
+          yarn test
 
   publish-gpr:
     needs: build
