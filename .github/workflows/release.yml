@@ -6,7 +6,7 @@ on:
       - created
 
 jobs:
-  test:
+  publish-npm-package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,14 +17,6 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn test
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-    steps:
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
