@@ -1,7 +1,13 @@
-import { DependencyList, useCallback, useEffect, useState } from 'react';
+import {
+  DependencyList,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 export type UsePromiseStateValue<T> = {
-  promise: () => Promise<T>;
+  promise: () => Promise<T> | false | undefined;
   onSuccess?: (result: T) => void;
   onError?: (error: Error) => void;
   onFinal?: () => void;
@@ -9,10 +15,11 @@ export type UsePromiseStateValue<T> = {
   disableInitialFetch?: boolean;
 };
 
-type UsePromiseStatus = 'waiting' | 'pending' | 'resolved' | 'rejected';
+export type UsePromiseStatus = 'waiting' | 'pending' | 'resolved' | 'rejected';
 
 export type UsePromiseState<T> = {
   data: T | null;
+  error: Error | null;
   status: UsePromiseStatus;
   refetch: () => void;
   update: (data: T | null) => void;
@@ -23,40 +30,45 @@ export default function usePromiseState<T>({
   onSuccess,
   onError,
   onFinal,
-  deps = [],
-  disableInitialFetch,
+  deps = useMemo(() => [], []),
 }: UsePromiseStateValue<T>): UsePromiseState<T> {
-  const [fetchTrigger, setFetchTrigger] = useState<boolean>(!disableInitialFetch);
   const [data, setData] = useState<T | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<UsePromiseStatus>('waiting');
 
-  useEffect(() => {
-    if (fetchTrigger && deps.every((d) => !!d)) {
-      (async () => {
-        try {
-          setStatus('pending');
-          const result = await promise();
-          setStatus('resolved');
-          setData(result);
-          if (onSuccess) onSuccess(result);
-        } catch (e) {
-          setStatus('rejected');
-          if (onError) onError(e as Error);
-        } finally {
-          setFetchTrigger(false);
-          if (onFinal) onFinal();
-        }
-      })();
+  const memorizedFetchData = useCallback(async () => {
+    if (promise && deps.every(d => d != null)) {
+      const promiseFn = promise();
+      if (!promiseFn) return;
+      try {
+        setStatus('pending');
+        const result = await promiseFn;
+        setStatus('resolved');
+        setData(result);
+        if (onSuccess) onSuccess(result);
+      } catch (e) {
+        setStatus('rejected');
+        setError(e as Error);
+        if (onError) onError(e as Error);
+      } finally {
+        if (onFinal) onFinal();
+      }
     }
-  }, [promise, fetchTrigger, ...deps]);
+  }, [promise, deps]);
 
-  const memorizedRefetch = useCallback(() => {
-    setFetchTrigger(true);
-  }, []);
+  useEffect(() => {
+    memorizedFetchData();
+  }, [memorizedFetchData]);
 
   const memorizedUpdateData = useCallback((newData: T | null) => {
     setData(newData);
   }, []);
 
-  return { data, status, refetch: memorizedRefetch, update: memorizedUpdateData };
+  return {
+    data,
+    error,
+    status,
+    refetch: memorizedFetchData,
+    update: memorizedUpdateData,
+  };
 }
