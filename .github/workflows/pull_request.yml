@@ -1,6 +1,15 @@
-name: size
+name: Pull Request Checks
 on: [pull_request]
+
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      CI_JOB_NUMBER: 1
+    steps:
+      - uses: actions/checkout@v1
+        - run: yarn install --frozen-lockfile
+        - run: yarn test
   size:
     runs-on: ubuntu-latest
     env:
