@@ -1,62 +1,44 @@
 # [use-tools](https://www.npmjs.com/package/@vincecao/use-tools)
 
+[![npm version](https://badge.fury.io/js/@vincecao%2Fuse-tools.svg)](https://badge.fury.io/js/@vincecao%2Fuse-tools)
+
+## Installation
+
 ```bash
 npm i @vincecao/use-tools
 ```
 
-## Demo Site
-https://vince-amazing.com/use-tools/
+## Demo
 
-## Demo Code
-https://github.com/vincecao/use-tools/tree/master/example
+- [Demo Site](https://vince-amazing.com/use-tools/)
+- [Code Sample](https://github.com/vincecao/use-tools/tree/master/example)
 
-## usePromiseState
+## Hooks
+### usePromiseState
 
-A hook that allows you to fetch data from remote source by passing a promise.
-
-### Example usage
+A hook that allows user to retrieve data from a remote by a promise function by taking a required promise and optional options.
 
 ```tsx
-
-function getGithubPromise(user: string): Promise<GithubResponse> {
-  return fetch(`https://api.github.com/users/${user}`).then(data =>
-    data.json()
-  );
-}
-
-const memorizedPromise = React.useCallback(() => {
-    return !!current && getGithubPromise(current);
-}, [current]);
-
-const memorizedDeps = React.useMemo(() => {
-    return [current];
-}, [current]);
-
-const { data, error, status, refetch, update } = usePromiseState<string>({
-    promise: // return a Promise that get data from remote. Changes from promise will trigger fetch/refetch
-    onError: (e) => {
-        console.error(e);
-        // on error
-    },
-    onSuccess: (data: string) => {
-        // on success
-    },
-    onFinal: () => {
-        // on finally
-    },
-    deps: memorizedDeps // optional dependency list, need to make all deps true in order to trigger the fetch. Changes from deps will trigger fetch/refetch
+const [remoteData, { error, status, refetch }, setRemoteData] = usePromiseState<T>(promise, {
+  deps,
+  onPending,
+  onSuccess,
+  onError,
+  onFinal
 })
+```
+_The `promise` needs to be wrapped with [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback) and `options` needs to be wrapped with [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) if it is not undefined_
+## useTimeout
 
+A simple implementation of `useTimeout` hook. The changes of promise will reset timeout
 
-// manually refetch
-refetch();
-
-// update current data outside the hook
-update(newData);
-
+```tsx
+useTimeout<T>(func, delay, disabled)
 ```
 
-## Running example
+_The `func` needs to be wrapped with [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)_
+
+### Running live example
 
 ```bash
 yarn

@@ -20,7 +20,7 @@
     "type": "git",
     "url": "https://github.com/vincecao/use-tools"
   },
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -36,9 +36,12 @@
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
+    "eslint-fix": "yarn eslint . --fix",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "prettier": "prettier \"{.,src,src/**,example/src,example/src/**,types}/*.{js,jsx,ts,tsx,json}\"",
+    "format": "yarn prettier --write"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -56,21 +59,37 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
-    "@testing-library/react-hooks": "^8.0.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.2.1",
+    "@types/lodash.debounce": "^4.0.7",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-testing-library": "^5.5.1",
     "husky": "^8.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "size-limit": "^7.0.8",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.4"
   },
-  "eslintConfig": {
-    "extends": [
-      "plugin:react-hooks/recommended"
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
     ]
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
   }
 }
