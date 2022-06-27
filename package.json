@@ -36,12 +36,11 @@
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "eslint-fix": "yarn eslint . --fix",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "prettier": "prettier \"{.,src,src/**,example/src,example/src/**,types}/*.{js,jsx,ts,tsx,json}\"",
-    "format": "yarn prettier --write"
+    "format": "yarn prettier --write && yarn eslint . --fix"
   },
   "peerDependencies": {
     "react": ">=16"

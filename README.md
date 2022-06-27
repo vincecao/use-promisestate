@@ -1,6 +1,7 @@
 # [use-tools](https://www.npmjs.com/package/@vincecao/use-tools)
 
 [![npm version](https://badge.fury.io/js/@vincecao%2Fuse-tools.svg)](https://badge.fury.io/js/@vincecao%2Fuse-tools)
+[![](https://badgen.net/github/checks/vincecao/use-tools)](https://github.com/vincecao/use-tools/actions)
 
 ## Installation
 
@@ -27,16 +28,24 @@ const [remoteData, { error, status, refetch }, setRemoteData] = usePromiseState<
   onFinal
 })
 ```
-_The `promise` needs to be wrapped with [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback) and `options` needs to be wrapped with [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) if it is not undefined_
+_The `promise` needs to be wrapped with [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback) and `options` needs to be wrapped with [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) if it is not `undefined`_.
 ## useTimeout
 
-A simple implementation of `useTimeout` hook. The changes of promise will reset timeout
+A simple implementation of `useTimeout` hook. The changes of promise will reset timeout. `disable` pause entire hook, disableDelay remove `setTimeout` behavior.
 
 ```tsx
-useTimeout<T>(func, delay, disabled)
+useTimeout<T>(func, delay, disabled, disableDelay)
 ```
 
-_The `func` needs to be wrapped with [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)_
+_The `func` needs to be wrapped with [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)._
+
+## useShuttle
+
+A hook returns shuttled list for each given unique array.
+
+```tsx
+const shuttled = useShuttle<T>(array)
+```
 
 ### Running live example
 

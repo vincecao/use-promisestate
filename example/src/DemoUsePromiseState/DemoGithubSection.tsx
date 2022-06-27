@@ -1,14 +1,16 @@
 import * as React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
 
 import {
   usePromiseState,
   UsePromiseStateOptions,
   UsePromiseStatePromise,
-} from '../../../src';
+} from '../../..';
+import Anchor from '../components/Anchor';
 import Button from '../components/Button';
 import Code from '../components/Code';
+import CodeBlock from '../components/CodeBlock';
 import Input from '../components/Input';
+import SampleSection from '../components/SampleSection';
 
 type Response = {
   login: string | null;
@@ -59,99 +61,97 @@ export default function DemoGithubSection(): React.ReactElement {
   );
 
   return (
-    <div className="py-5">
-      <p className="text-xl">
-        Promise will be triggered once promise and deps inside options are valid
-      </p>
-      <p>
-        Any changes for <Code>promise</Code> or <Code>options</Code> will
-        re-trigger the actions
-      </p>
-      <p>
-        In this example <Code>user.current</Code> will be the trigger variable,
-        and once it changed, the promise function will be fired again
-      </p>
-      <p>
-        Try to press <Code>search</Code> to see the change or change
-        <Code>username</Code> for a new search
-      </p>
-      <span className="flex justify-between">
-        <label>
-          Github Username
-          <Input
-            value={user.input}
-            placeholder={user.current || 'Fill your username'}
-            onChange={value => {
-              setUser(prevUser => ({ ...prevUser, input: value }));
-            }}
-          />
-        </label>
-
-        <span>
-          <Button
-            text="Search"
-            disabled={!user.input}
-            onClick={() => {
-              setUser(prevUser => ({ current: prevUser.input, input: '' }));
-            }}
-          />
-
-          <Button text="Refetch" disabled={!user.current} onClick={refetch} />
-        </span>
-      </span>
-
-      <div className="text-xs">
-        <pre className="font-mono">typescript</pre>
-        <SyntaxHighlighter language="typescript">
-          {`
-const promise: UsePromiseStatePromise<ResponseType> = useCallback(() => {
-  return !!current && getGithubPromise(current);
+    <SampleSection
+      title="Promise will be triggered once promise and deps inside options are valid"
+      sampleCodeBlock={
+        <CodeBlock
+          type="typescript"
+          sourceHref="/example/src/DemoUsePromiseState/DemoGithubSection.tsx"
+          codeString={`const promise: UsePromiseStatePromise<ResponseType> = useCallback(() => {
+return !!current && getGithubPromise(current);
 }, [current]);
 
 const options: UsePromiseStateOptions<ResponseType> = useMemo(
-  () => ({
-    deps: [current],
-    onSuccess: console.log,
-    onError: console.error,
-    onFinal: () => console.log('finally'),
-    onPending: () => console.log('pending'),
-  }),
-  [current]
+() => ({
+deps: [current],
+onSuccess: console.log,
+onError: console.error,
+onFinal: () => console.log('finally'),
+onPending: () => console.log('pending'),
+}),
+[current]
 );
 
 const [data, { error, status, refetch }] = usePromiseState<ResponseType>(
-  promise,
-  options
+promise,
+options
 );`}
-        </SyntaxHighlighter>
-      </div>
+        />
+      }
+      sampleControls={
+        <>
+          <p>
+            Any changes for<Code>promise</Code>or<Code>options</Code>will
+            re-trigger the actions. In this example<Code>user.current</Code>will
+            be the trigger variable, and once it changed, the promise function
+            will be fired again. Try to press<Code>search</Code>to see the
+            change or change
+            <Code>username</Code>for a new search.
+          </p>
 
-      <div className="text-xs">
-        <pre className="font-mono">result</pre>
-        <div className="h-64 overflow-x-auto">
-          <SyntaxHighlighter language="typescript">
-            {JSON.stringify({ user, status, data, error }, null, 4)}
-          </SyntaxHighlighter>
-        </div>
-      </div>
+          <hr className="my-5 w-3/4 mx-auto" />
 
+          <span className="flex justify-between">
+            <label>
+              Github Username
+              <Input
+                value={user.input}
+                placeholder={user.current || 'Fill your username'}
+                onChange={value => {
+                  setUser(prevUser => ({ ...prevUser, input: value }));
+                }}
+              />
+            </label>
+
+            <span>
+              <Button
+                text="Search"
+                disabled={!user.input}
+                onClick={() => {
+                  setUser(prevUser => ({ current: prevUser.input, input: '' }));
+                }}
+              />
+
+              <Button
+                text="Refetch"
+                disabled={!user.current}
+                onClick={refetch}
+              />
+            </span>
+          </span>
+        </>
+      }
+      resultCodeBlock={
+        <CodeBlock
+          type="result"
+          codeString={JSON.stringify({ user, status, data, error }, null, 4)}
+        />
+      }
+    >
       {data && (
         <div className="flex p-3 space-x-2 items-center">
-          <a href={data.html_url || undefined}>
+          <Anchor href={data.html_url}>
             <img
               src={data.avatar_url || undefined}
               className="w-20 h-20 rounded-full"
             />
-          </a>
+          </Anchor>
           <div>
             <div>
               <b>name</b>: {data.login}
             </div>
             <div>
-              <b>blog</b>:
-              <a href={data.blog || undefined} className="underline">
-                {data.blog}
-              </a>
+              <b>blog</b>:<Anchor href={'//' + data.blog}>{data.blog}</Anchor>
             </div>
             <div>
               <b>location</b>: {data.location}
@@ -159,6 +159,6 @@ const [data, { error, status, refetch }] = usePromiseState<ResponseType>(
           </div>
         </div>
       )}
-    </div>
+    </SampleSection>
   );
 }
