@@ -1,19 +1,12 @@
 import * as React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
 
-import { usePromiseState } from '../../../src';
+import { usePromiseState } from '../../..';
 import Button from '../components/Button';
+import CodeBlock from '../components/CodeBlock';
+import SampleSection from '../components/SampleSection';
 
 function getIpAddressPromise() {
-  return new Promise<string>((resolve, reject) =>
-    setTimeout(
-      () =>
-        fetch('https://api.ipify.org?format=json')
-          .then(data => resolve(data.json()))
-          .catch(reject),
-      5000
-    )
-  );
+  return fetch('https://api.ipify.org?format=json').then(data => data.json());
 }
 
 export default function DemoIPSection(): React.ReactElement {
@@ -21,26 +14,32 @@ export default function DemoIPSection(): React.ReactElement {
     React.useCallback(getIpAddressPromise, [])
   );
   return (
-    <div className="py-5">
-      <p className="text-xl">Promise will be triggered automatically</p>
-      <p>IP address API will called in 5 sec as a timeout promise</p>
-      <span className="flex justify-end">
-        <Button text="Refetch" onClick={refetch} />
-      </span>
-      <div className="text-xs">
-        <pre className="font-mono">typescript</pre>
-        <SyntaxHighlighter language="typescript">
-          {`const [ip, { error, status, refetch }] = usePromiseState<string>(useCallback(getIpAddressPromise, []))`}
-        </SyntaxHighlighter>
-      </div>
-      <div className="text-xs">
-        <pre className="font-mono">result</pre>
-        <SyntaxHighlighter language="typescript">
-          {JSON.stringify({ status, data: ip, error }, null, 4)}
-        </SyntaxHighlighter>
-      </div>
-
-      <br />
-    </div>
+    <SampleSection
+      title="Promise will be triggered automatically"
+      sampleCodeBlock={
+        <CodeBlock
+          type="typescript"
+          sourceHref="/example/src/DemoUsePromiseState/DemoIPSection.tsx"
+          codeString={`const [ip, { error, status, refetch }] = usePromiseState<string>(useCallback(getIpAddressPromise, []))`}
+        />
+      }
+      sampleControls={
+        <>
+          <p>
+            Getting IP address will start automatically and will do a re-fetch
+            action when press below button.
+          </p>
+          <span className="flex justify-end">
+            <Button text="Refetch" onClick={refetch} />
+          </span>
+        </>
+      }
+      resultCodeBlock={
+        <CodeBlock
+          type="result"
+          codeString={JSON.stringify({ status, ip, error }, null, 4)}
+        />
+      }
+    />
   );
 }

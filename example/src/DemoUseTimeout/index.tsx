@@ -1,23 +1,24 @@
 import * as React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
 
+import Anchor from '../components/Anchor';
 import Code from '../components/Code';
+import CodeBlock from '../components/CodeBlock';
+import DemoTimeout from './DemoTimeout';
 
-export default function useTimeout(): React.ReactElement {
+export default function DemoUseTimeout(): React.ReactElement {
   return (
-    <div className="text-xs my-5">
-      <SyntaxHighlighter language="typescript">
-        {`useTimeout<T>(func, delay, disabled)`}
-      </SyntaxHighlighter>
-      <p className="italic text-base">
-        <Code>func</Code> needs to be wrapped with
-        <a
-          href="https://reactjs.org/docs/hooks-reference.html#usecallback"
-          className="underline font-bold mx-1"
-        >
-          useCallback
-        </a>
-      </p>
-    </div>
+    <>
+      <CodeBlock
+        codeString={`useTimeout<T>(func, delay, disabled, disableDelay)`}
+      >
+        <p className="italic text-base">
+          <Code>func</Code>needs to be wrapped with
+          <Anchor href="https://reactjs.org/docs/hooks-reference.html#usecallback">
+            useCallback
+          </Anchor>
+        </p>
+      </CodeBlock>
+      <DemoTimeout />
+    </>
   );
 }

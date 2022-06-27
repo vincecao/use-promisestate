@@ -3,7 +3,13 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 
+import Anchor from './src/components/Anchor';
+import CodeBlock from './src/components/CodeBlock';
+import Footer from './src/components/Footer';
+import Header from './src/components/Header';
+import HookSection from './src/components/HookSection';
 import DemoUsePromiseState from './src/DemoUsePromiseState/index';
+import DemoUseShuttle from './src/DemoUseShuttle';
 import DemoUseTimeout from './src/DemoUseTimeout/index';
 
 const container = document.getElementById('root');
@@ -12,37 +18,44 @@ const root = createRoot(container!);
 
 function App() {
   return (
-    <div className="p-5 font-serif">
-      <div>
-        <p className="text-3xl">usePromiseState</p>
-        <DemoUsePromiseState />
-      </div>
-
-      <div>
-        <p className="text-3xl">useTimeout</p>
-        <DemoUseTimeout />
-      </div>
-
-      <div className="fixed bottom-0 space-x-5 w-full flex justify-center">
-        <a
-          href="https://www.npmjs.com/package/@vincecao/use-tools"
-          className="underline"
-        >
-          NPM: use-tools
-        </a>
-        <span>
-          CopyRight @
-          <a href="https://vince-amazing.com" className="underline">
-            Vince
-          </a>
+    <div className='text-gray-800'>
+      <Header>
+        <Anchor href="//www.npmjs.com/package/@vincecao/use-tools">
+          @vincecao/use-tools
+        </Anchor>
+        <span className='flex space-x-2'>
+          <Anchor href="//www.npmjs.com/package/@vincecao/use-tools">
+            <img src="https://badge.fury.io/js/@vincecao%2Fuse-tools.svg" />
+          </Anchor>
+          <Anchor href="https://github.com/vincecao/use-tools">
+            <img src="https://badgen.net/github/checks/vincecao/use-tools" />
+          </Anchor>
         </span>
-        <a
-          href="https://github.com/vincecao/use-tools/tree/master/example"
-          className="underline"
-        >
-          Example code with this Demo
-        </a>
+      </Header>
+      
+      
+      
+      <div className="p-5 space-y-5 font-serif py-10">
+
+        <CodeBlock type='installation' codeString='yarn add @vincecao/use-tools' language='bash'/>
+
+        <HookSection title="usePromiseState">
+          <DemoUsePromiseState />
+        </HookSection>
+
+        <HookSection title="useTimeout">
+          <DemoUseTimeout />
+        </HookSection>
+
+        <HookSection title="useShuttle">
+          <DemoUseShuttle />
+        </HookSection>
       </div>
+      <Footer>
+        <span>
+          copyright<Anchor href="//vince-amazing.com">@Vince</Anchor>
+        </span>
+      </Footer>
     </div>
   );
 }
