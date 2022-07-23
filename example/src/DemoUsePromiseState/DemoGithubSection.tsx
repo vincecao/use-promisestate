@@ -68,23 +68,23 @@ export default function DemoGithubSection(): React.ReactElement {
           type="typescript"
           sourceHref="/example/src/DemoUsePromiseState/DemoGithubSection.tsx"
           codeString={`const promise: UsePromiseStatePromise<ResponseType> = useCallback(() => {
-return !!current && getGithubPromise(current);
+  return !!current && getGithubPromise(current);
 }, [current]);
 
 const options: UsePromiseStateOptions<ResponseType> = useMemo(
-() => ({
-deps: [current],
-onSuccess: console.log,
-onError: console.error,
-onFinal: () => console.log('finally'),
-onPending: () => console.log('pending'),
-}),
-[current]
+  () => ({
+    deps: [current],
+    onSuccess: console.log,
+    onError: console.error,
+    onFinal: () => console.log('finally'),
+    onPending: () => console.log('pending'),
+  }),
+  [current]
 );
 
 const [data, { error, status, refetch }] = usePromiseState<ResponseType>(
-promise,
-options
+  promise,
+  options
 );`}
         />
       }

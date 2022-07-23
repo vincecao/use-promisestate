@@ -1,0 +1,35 @@
+name: Beta Publish
+
+# Then a new PR is merged to master branch, a beta version will be published
+on:
+  pull_request:
+    branches: 
+      - master
+    types: [closed]
+
+jobs:
+  publish-beta:
+    if: ${{ github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Test package
+        run: |
+          yarn install --frozen-lockfile
+          yarn test
+      - name: Assign beta version from release tag version
+        run: |
+          git config --global user.name "Lineng CAO"
+          git config --global user.email "lineng.ca@gmail.com"
+          npm version prerelease --preid=beta
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          tag: beta
+          token: ${{ secrets.NPM_TOKEN }}
+      - name: Update beta version to master branch
+        run: git push
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
