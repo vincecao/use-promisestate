@@ -27,8 +27,10 @@ jobs:
           yarn install --frozen-lockfile
           yarn test
       - name: Assign stable version from release tag version
-        run: npm version ${{ github.event.release.tag_name }}
-      - run: npm publish
+        # no need git tag version change because it is add from release
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+      - name: Publish stable to NPMJS
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -38,12 +40,16 @@ jobs:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
           scope: 'vincecao'
-      - run: npm publish
+      - name: Publish stable to GITHUB
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update stable version to HEAD:master branch
-        run: git push origin HEAD:master
+      # add commit manually due to no-git-tag-version setting in npm version
+        run: |
+          git commit -a -m "${{ github.event.release.tag_name }}"
+          git push origin HEAD:master
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
