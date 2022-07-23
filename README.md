@@ -6,11 +6,17 @@
 ## Installation
 
 ```bash
+# latest
 # npm
 npm i @vincecao/use-tools
-
 # yarn
 yarn add @vincecao/use-tools
+
+# beta
+# npm
+npm i @vincecao/use-tools@beta
+# yarn
+yarn add @vincecao/use-tools@beta
 ```
 
 This package was published in both [NPMJS](https://www.npmjs.com/package/@vincecao/use-tools) and [GITHUB](https://github.com/vincecao/use-tools/packages/1555582) npm registry.
@@ -32,6 +38,9 @@ yarn add vincecao/use-tools
 yarn add github:vincecao/use-tools
 ```
 
+### Release Method
+- Github Actions will create and publish a beta version, when a Pull Request is merged to the master.
+- Github Actions will create and publish a stable version, when a Release is created with a new tag version.
 
 ## Demo
 
