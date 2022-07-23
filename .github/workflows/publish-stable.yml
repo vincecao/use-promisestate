@@ -28,7 +28,16 @@ jobs:
           tag: latest
           token: ${{ secrets.NPM_TOKEN }}
       - name: Update stable version to master branch
-        run: git push origin HEAD:master # add origin and HEAD because current running environment is from a release
+        run: | 
+          PACKAGE_VERSION=$(cat package.json \
+            | grep \"version\" \
+            | head -1 \
+            | awk -F: '{ print $2 }' \
+            | sed 's/[",]//g' \
+            | tr -d '[[:space:]]')
+          git commit -a -m $PACKAGE_VERSION
+          # add origin and HEAD because current running environment is from a release
+          git push origin HEAD:master
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
