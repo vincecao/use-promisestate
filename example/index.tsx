@@ -21,7 +21,7 @@ function App() {
     <div className='text-gray-800'>
       <Header>
         <Anchor href="//www.npmjs.com/package/@vincecao/use-tools">
-          @vincecao/use-tools
+          use-tools
         </Anchor>
         <span className='flex space-x-2'>
           <Anchor href="//www.npmjs.com/package/@vincecao/use-tools">
@@ -32,8 +32,6 @@ function App() {
           </Anchor>
         </span>
       </Header>
-      
-      
       
       <div className="p-5 space-y-5 font-serif py-10">
 
