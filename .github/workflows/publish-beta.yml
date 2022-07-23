@@ -49,4 +49,5 @@ jobs:
       - name: Update beta version to HEAD:master branch
         run: git push origin HEAD:master
         env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # for re-triggering github checks on master, need to use a personal PAT token instead of GITHUB_TOKEN
+          github-token: ${{ secrets.GH_PUSH_COMMIT_TOKEN }}

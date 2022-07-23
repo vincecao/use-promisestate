@@ -51,7 +51,8 @@ jobs:
           git commit -a -m "${{ github.event.release.tag_name }}"
           git push origin HEAD:master
         env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # for re-triggering github checks on master, need to use a personal PAT token instead of GITHUB_TOKEN
+          github-token: ${{ secrets.GH_PUSH_COMMIT_TOKEN }}
 
   # When a new PR is merged to master branch, a demo site will be build and deployed 
   deploy-demo-page:
