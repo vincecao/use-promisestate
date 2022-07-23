@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook, waitFor } from '@testing-library/react';
 
 import usePromiseState, {
   UsePromiseStateOptions,
@@ -20,7 +20,7 @@ describe('Test Hook usePromiseState', () => {
     jest.resetAllMocks();
   });
   it('calls the correct promise function passing with undefined options', async () => {
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -37,7 +37,7 @@ describe('Test Hook usePromiseState', () => {
   });
 
   it('does not call promise function when having some invalid deps inside options', async () => {
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -60,7 +60,7 @@ describe('Test Hook usePromiseState', () => {
   });
 
   it('does call promise function when the invalid deps becomes valid inside options', async () => {
-    const { result, waitFor, rerender } = renderHook(
+    const { result, rerender } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -94,7 +94,7 @@ describe('Test Hook usePromiseState', () => {
       (name: string) => 'Hello world, ' + name + '!'
     );
 
-    const { result, waitFor, rerender } = renderHook(
+    const { result, rerender } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -120,7 +120,7 @@ describe('Test Hook usePromiseState', () => {
   });
 
   it('does not call promise function when it is returning undefined', async () => {
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -138,7 +138,7 @@ describe('Test Hook usePromiseState', () => {
   });
 
   it('does call promise function when it returns valid promise from undefined', async () => {
-    const { result, waitFor, rerender } = renderHook(
+    const { result, rerender } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -164,7 +164,7 @@ describe('Test Hook usePromiseState', () => {
 
   it('does call onPending function when state changes to pending status', async () => {
     const MOCK_onPending = jest.fn();
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -187,7 +187,7 @@ describe('Test Hook usePromiseState', () => {
 
   it('does call onSuccess when the promise function gets resolved', async () => {
     const MOCK_onSuccess = jest.fn();
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -212,7 +212,7 @@ describe('Test Hook usePromiseState', () => {
   it('does call onError when the promise function gets rejected', async () => {
     MOCK_promise.mockRejectedValue(new Error('new error'));
     const MOCK_onError = jest.fn();
-    const { waitFor } = renderHook(
+    renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -234,7 +234,7 @@ describe('Test Hook usePromiseState', () => {
 
   it('does call onFinal when the promise function gets resolved', async () => {
     const MOCK_onFinal = jest.fn();
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -258,7 +258,7 @@ describe('Test Hook usePromiseState', () => {
   it('does call onFinal when the promise function gets rejected', async () => {
     MOCK_promise.mockRejectedValue(new Error('new error'));
     const MOCK_onFinal = jest.fn();
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -281,7 +281,7 @@ describe('Test Hook usePromiseState', () => {
   });
 
   it('re-fetches correctly', async () => {
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
@@ -305,7 +305,7 @@ describe('Test Hook usePromiseState', () => {
 
   it('returns error correctly', async () => {
     MOCK_promise.mockRejectedValue(new Error('new error'));
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       ({ promiseFn, options }: Props) =>
         usePromiseState<string>(promiseFn, options),
       {
