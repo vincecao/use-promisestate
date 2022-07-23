@@ -15,3 +15,10 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn test
+
+  pass-ci-chore-commits:
+    if: ${{ contains(github.event.head_commit.message, 'ci-chore') }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo pass'
+          
