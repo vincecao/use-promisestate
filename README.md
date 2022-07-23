@@ -1,7 +1,7 @@
 # [use-tools](https://www.npmjs.com/package/@vincecao/use-tools)
 
 [![npm version](https://badge.fury.io/js/@vincecao%2Fuse-tools.svg)](https://badge.fury.io/js/@vincecao%2Fuse-tools)
-[![](https://badgen.net/github/checks/vincecao/use-tools)](https://github.com/vincecao/use-tools/actions)
+[![npm checks](https://badgen.net/github/checks/vincecao/use-tools)](https://github.com/vincecao/use-tools/actions)
 
 ## Installation
 
@@ -12,6 +12,26 @@ npm i @vincecao/use-tools
 # yarn
 yarn add @vincecao/use-tools
 ```
+
+This package was published in both [NPMJS](https://www.npmjs.com/package/@vincecao/use-tools) and [GITHUB](https://github.com/vincecao/use-tools/packages/1555582) npm registry.
+To use page from Github npm registry, add below file in your repo before run `npm i` or `yarn add`.
+
+```bash
+# .npmrc
+@vincecao:registry=https://npm.pkg.github.com
+```
+
+You can also install directly from git master
+```bash
+# npm
+npm i vincecao/use-tools
+npm i github:vincecao/use-tools
+
+# yarn
+yarn add vincecao/use-tools
+yarn add github:vincecao/use-tools
+```
+
 
 ## Demo
 
