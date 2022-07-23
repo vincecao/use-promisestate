@@ -6,11 +6,17 @@
 ## Installation
 
 ```bash
+# latest
 # npm
 npm i @vincecao/use-tools
-
 # yarn
 yarn add @vincecao/use-tools
+
+# beta
+# npm
+npm i @vincecao/use-tools@beta
+# yarn
+yarn add @vincecao/use-tools@beta
 ```
 
 This package was published in both [NPMJS](https://www.npmjs.com/package/@vincecao/use-tools) and [GITHUB](https://github.com/vincecao/use-tools/packages/1555582) npm registry.
