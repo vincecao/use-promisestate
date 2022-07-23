@@ -30,7 +30,8 @@ jobs:
           yarn test
       - name: Assign beta version from release tag version
         run: npm version prerelease --preid=beta
-      - run: npm publish --tag beta
+      - name: Publish beta to NPMJS
+        run: npm publish --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
@@ -40,7 +41,8 @@ jobs:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
           scope: 'vincecao'
-      - run: npm publish --tag beta
+      - name: Publish beta to GITHUB
+        run: npm publish --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
