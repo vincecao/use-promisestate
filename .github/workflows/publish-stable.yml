@@ -26,8 +26,8 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn test
-      - name: Assign stable version from release tag version
-        # no need git tag version change because it is add from release
+      - name: Assign a new stable version from release tag version
+        # no need git tag version change because it is created before this action starts
         run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
       - name: Publish stable to NPMJS
         run: npm publish
@@ -45,15 +45,16 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update stable version to HEAD:master branch
+      - name: Add stable version change commit message 
       # add commit manually due to no-git-tag-version setting in npm version
-        run: |
-          git commit -a -m "${{ github.event.release.tag_name }}"
-          git push origin HEAD:master
-        env:
-          # for re-triggering github checks on master, need to use a personal PAT token instead of GITHUB_TOKEN
-          github-token: ${{ secrets.GH_PUSH_COMMIT_TOKEN }}
+        run: git commit -a -m "ci-chore ${{ github.event.release.tag_name }}"
 
+      - name: Push stable version change to HEAD:master
+        uses: ad-m/github-push-action@master
+        with:
+          # for re-triggering github checks on master, need to use a personal PAT token instead of GITHUB_TOKEN
+          github_token: ${{ secrets.GH_PUSH_COMMIT_TOKEN }}
+  
   # When a new PR is merged to master branch, a demo site will be build and deployed 
   deploy-demo-page:
     runs-on: ubuntu-latest
