@@ -24,7 +24,7 @@ jobs:
         run: |
           git config --global user.name "Lineng CAO"
           git config --global user.email "lineng.ca@gmail.com"
-          npm version prerelease --preid=beta
+          npm version prerelease --preid=beta --no-git-tag-version 
       - uses: JS-DevTools/npm-publish@v1
         with:
           tag: beta
