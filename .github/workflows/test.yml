@@ -1,4 +1,4 @@
-name: Master Push Test
+name: PullRequest and Push Regular Test
 on: 
   pull_request:
   push:
