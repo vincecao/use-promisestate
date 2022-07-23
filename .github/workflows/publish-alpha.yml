@@ -53,3 +53,4 @@ jobs:
         with:
           # for re-triggering github checks on master, need to use a personal PAT token instead of GITHUB_TOKEN
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
