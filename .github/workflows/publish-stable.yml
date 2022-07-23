@@ -11,33 +11,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+
+      - name: Configure Git setting for CI
+        run: |
+          git config --global user.name "Lineng CAO"
+          git config --global user.email "lineng.ca@gmail.com"
+
+      - name: Publish stable package to NPMJS npm registry
+        uses: actions/setup-node@v3
         with:
           node-version: 16
+          registry-url: 'https://registry.npmjs.org'
       - name: Test package
         run: |
           yarn install --frozen-lockfile
           yarn test
       - name: Assign stable version from release tag version
-        run: |
-          git config --global user.name "Lineng CAO"
-          git config --global user.email "lineng.ca@gmail.com"
-          npm version ${{ github.event.release.tag_name }} --no-git-tag-version 
-      - uses: JS-DevTools/npm-publish@v1
+        run: npm version ${{ github.event.release.tag_name }}
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish stable package to GITHUB npm registry
+        uses: actions/setup-node@v3
         with:
-          tag: latest
-          token: ${{ secrets.NPM_TOKEN }}
-      - name: Update stable version to master branch
-        run: | 
-          PACKAGE_VERSION=$(cat package.json \
-            | grep \"version\" \
-            | head -1 \
-            | awk -F: '{ print $2 }' \
-            | sed 's/[",]//g' \
-            | tr -d '[[:space:]]')
-          git commit -a -m $PACKAGE_VERSION
-          # add origin and HEAD because current running environment is from a release
-          git push origin HEAD:master
+          node-version: 16
+          registry-url: https://npm.pkg.github.com/
+          scope: 'vincecao'
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update stable version to HEAD:master branch
+        run: git push origin HEAD:master
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
