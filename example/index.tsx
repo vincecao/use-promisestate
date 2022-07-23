@@ -18,7 +18,7 @@ const root = createRoot(container!);
 
 function App() {
   return (
-    <div className='text-gray-800'>
+    <div className='text-gray-800 container max-w-6xl mx-auto'>
       <Header>
         <Anchor href="//www.npmjs.com/package/@vincecao/use-tools">
           use-tools
