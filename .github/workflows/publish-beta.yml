@@ -13,7 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+        with:
+          # Allow push from action in PAT trigger an action
+          persist-credentials: false
+      
       - name: Configure Git setting for CI
         run: |
           git config --global user.name "Lineng CAO"
@@ -24,12 +27,14 @@ jobs:
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
+
       - name: Test package
         run: |
           yarn install --frozen-lockfile
           yarn test
       - name: Assign a new beta version from current package version
         run: npm version prerelease --preid=beta -m "ci-chore %s"
+
       - name: Publish beta to NPMJS
         run: npm publish --tag beta
         env:
@@ -41,6 +46,7 @@ jobs:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
           scope: 'vincecao'
+
       - name: Publish beta to GITHUB
         run: npm publish --tag beta
         env:
