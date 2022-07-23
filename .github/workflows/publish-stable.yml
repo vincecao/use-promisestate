@@ -22,7 +22,7 @@ jobs:
         run: |
           git config --global user.name "Lineng CAO"
           git config --global user.email "lineng.ca@gmail.com"
-          npm version ${{ github.event.release.tag_name }}
+          npm version ${{ github.event.release.tag_name }} --no-git-tag-version 
       - uses: JS-DevTools/npm-publish@v1
         with:
           tag: latest
