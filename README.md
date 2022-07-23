@@ -38,6 +38,9 @@ yarn add vincecao/use-tools
 yarn add github:vincecao/use-tools
 ```
 
+### Release Method
+- Github Actions will create and publish a beta version, when a Pull Request is merged to the master.
+- Github Actions will create and publish a stable version, when a Release is created with a new tag version.
 
 ## Demo
 
