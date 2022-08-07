@@ -54,7 +54,7 @@ jobs:
 
       - name: Add stable version change commit message 
       # add commit manually due to no-git-tag-version setting in npm version
-        run: git commit -a -m "ci-chore ${{ github.event.release.tag_name }}"
+        run: git commit -a -m "chore(ci): ${{ github.event.release.tag_name }}"
 
       - name: Push stable version change to HEAD:master
         uses: ad-m/github-push-action@master
