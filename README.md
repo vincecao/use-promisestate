@@ -11,6 +11,13 @@ A group of reusable custom hooks for making react developer life easier.
 | [useTimeout][useTimeout-link] | Connecting `setTimeout` into React state world. |
 | [useShuttle][useShuttle-link] | A hook returns a new shuttled list for each unique given array. |
 | [useFetch][useFetch-link] | A convenient wrapper for `$fetch` function. React implementation of `useLazyFetch` from [Nuxt3](https://v3.nuxtjs.org/api/composables/use-lazy-fetch) API. |
+
+## Example
+
+Please check more examples at below links
+- [**Demo Site**](https://vince-amazing.com/use-tools/)
+- [Code Sample](https://github.com/vincecao/use-tools/tree/master/example)
+
 ## Installation
 
 ```bash
@@ -50,12 +57,6 @@ yarn add github:vincecao/use-tools
 ### Release Method
 - When a Pull Request is merged to the master, Github Actions will create and publish a beta version.
 - When a Release is created with a new tag version, Github Actions will create and publish a stable version.
-
-## Demo
-
-Please check more samples at below
-- [**Demo Site**](https://vince-amazing.com/use-tools/)
-- [Code Sample](https://github.com/vincecao/use-tools/tree/master/example)
 
 ### Running live example
 
