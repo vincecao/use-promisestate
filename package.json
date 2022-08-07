@@ -88,6 +88,7 @@
     ]
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8"
+    "lodash.debounce": "^4.0.8",
+    "ohmyfetch": "^0.4.18"
   }
 }
