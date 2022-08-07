@@ -8,9 +8,10 @@ import CodeBlock from './src/components/CodeBlock';
 import Footer from './src/components/Footer';
 import Header from './src/components/Header';
 import HookSection from './src/components/HookSection';
-import DemoUsePromiseState from './src/DemoUsePromiseState/index';
+import DemoUsePromiseState from './src/DemoUsePromiseState';
 import DemoUseShuttle from './src/DemoUseShuttle';
-import DemoUseTimeout from './src/DemoUseTimeout/index';
+import DemoUseTimeout from './src/DemoUseTimeout';
+import DemoUseFetch from './src/DemoUseFetch';
 
 const container = document.getElementById('root');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -47,6 +48,10 @@ function App() {
 
         <HookSection title="useShuttle">
           <DemoUseShuttle />
+        </HookSection>
+
+        <HookSection title="useFetch">
+          <DemoUseFetch />
         </HookSection>
       </div>
       <Footer>
