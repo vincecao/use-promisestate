@@ -17,6 +17,14 @@ export default function DemoUsePromiseState(): React.ReactElement {
   baseURL
 })`}
       >
+        <p className='text-base'>
+          React mimic implementation of <Code>useLazyFetch</Code> from{' '}
+          <Anchor href="https://v3.nuxtjs.org/api/composables/use-lazy-fetch">
+            Nuxt3
+          </Anchor>
+          . It provides a convenient wrapper for <Anchor href="https://github.com/unjs/ohmyfetch">ohmyfetch</Anchor> with a given URL and
+          options.
+        </p>
       </CodeBlock>
       <DemoIPFetch />
     </>

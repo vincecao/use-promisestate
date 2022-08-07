@@ -4,7 +4,7 @@ import { $fetch, FetchOptions } from 'ohmyfetch';
 import { UseFetchOptions, UseFetch } from './type';
 
 /**
- * This hook is a react mimic implementation for useLazyFetch in Nuxt3
+ * This hook is a react mimic implementation of useLazyFetch from Nuxt3
  * https://v3.nuxtjs.org/api/composables/use-lazy-fetch
  *
  * This hook provides a convenient wrapper for $fetch

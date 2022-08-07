@@ -21,15 +21,15 @@ function App() {
   return (
     <div className='text-gray-800 container max-w-6xl mx-auto'>
       <Header>
-        <Anchor href="//www.npmjs.com/package/@vincecao/use-tools">
+        <Anchor href="//github.com/vincecao/use-tools">
           use-tools
         </Anchor>
         <span className='flex space-x-2'>
           <Anchor href="//www.npmjs.com/package/@vincecao/use-tools">
-            <img src="https://badge.fury.io/js/@vincecao%2Fuse-tools.svg" />
+            <img src="//badge.fury.io/js/@vincecao%2Fuse-tools.svg" />
           </Anchor>
-          <Anchor href="https://github.com/vincecao/use-tools">
-            <img src="https://badgen.net/github/checks/vincecao/use-tools" />
+          <Anchor href="//github.com/vincecao/use-tools">
+            <img src="//badgen.net/github/checks/vincecao/use-tools" />
           </Anchor>
         </span>
       </Header>
