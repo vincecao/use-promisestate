@@ -33,7 +33,8 @@ jobs:
           yarn install --frozen-lockfile
           yarn test
       - name: Assign a new beta version from current package version
-        run: npm version prerelease --preid=beta -m "chore(ci): v%s"
+        run: |
+          npm version prerelease --preid=beta -m "chore(ci): v%s"
 
       - name: Publish beta to NPMJS
         run: npm publish --tag beta
