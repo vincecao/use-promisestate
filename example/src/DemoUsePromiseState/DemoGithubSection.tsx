@@ -1,3 +1,4 @@
+import { $fetch } from 'ohmyfetch';
 import * as React from 'react';
 
 import {
@@ -27,9 +28,7 @@ type Response = {
 };
 
 function getGithubPromise(user: string): Promise<Response> {
-  return fetch(`https://api.github.com/users/${user}`).then(data =>
-    data.json()
-  );
+  return $fetch(`https://api.github.com/users/${user}`);
 }
 
 export default function DemoGithubSection(): React.ReactElement {

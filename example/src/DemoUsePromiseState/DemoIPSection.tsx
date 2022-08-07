@@ -1,3 +1,4 @@
+import { $fetch } from 'ohmyfetch';
 import * as React from 'react';
 
 import { usePromiseState } from '../../..';
@@ -6,7 +7,7 @@ import CodeBlock from '../components/CodeBlock';
 import SampleSection from '../components/SampleSection';
 
 function getIpAddressPromise() {
-  return fetch('https://api.ipify.org?format=json').then(data => data.json());
+  return $fetch('https://api.ipify.org?format=json');
 }
 
 export default function DemoIPSection(): React.ReactElement {
@@ -20,7 +21,9 @@ export default function DemoIPSection(): React.ReactElement {
         <CodeBlock
           type="typescript"
           sourceHref="/example/src/DemoUsePromiseState/DemoIPSection.tsx"
-          codeString={`const [ip, { error, status, refetch }] = usePromiseState<string>(useCallback(getIpAddressPromise, []))`}
+          codeString={`const promise = useCallback(getIpAddressPromise, []);
+
+const [ip, { error, status, refetch }] = usePromiseState<string>(promise);`}
         />
       }
       sampleControls={
