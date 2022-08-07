@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { $fetch } from 'ohmyfetch';
+import { $fetch, FetchOptions } from 'ohmyfetch';
 import { UseFetchOptions, UseFetch } from './type';
 
 /**
@@ -24,7 +24,7 @@ export default function useFetch<T>(
     try {
       setError(false);
       setPending(true);
-      const result = await $fetch(url, options);
+      const result = await $fetch(url, options as FetchOptions<"json">);
       setData(result);
     } catch (e) {
       setError(e as Error);
