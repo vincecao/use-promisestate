@@ -1,3 +1,5 @@
+A group of reusable custom hooks for making react developer life easier.
+
 # [use-tools](https://www.npmjs.com/package/@vincecao/use-tools)
 
 [![npm version](https://badge.fury.io/js/@vincecao%2Fuse-tools.svg)](https://badge.fury.io/js/@vincecao%2Fuse-tools)
@@ -19,15 +21,16 @@ npm i @vincecao/use-tools@beta
 yarn add @vincecao/use-tools@beta
 ```
 
-This package was published in both [NPMJS](https://www.npmjs.com/package/@vincecao/use-tools) and [GITHUB](https://github.com/vincecao/use-tools/packages/1555582) npm registry.
-To use page from Github npm registry, add below file in your repo before run `npm i` or `yarn add`.
+TThis package is automatically published in [NPMJS](https://www.npmjs.com/package/@vincecao/use-tools) and [GITHUB](https://github.com/vincecao/use-tools/packages/1555582) npm registry.
+
+_To install package from Github npm registry, add below file in your repo before run `npm i` or `yarn add`_.
 
 ```bash
 # .npmrc
 @vincecao:registry=https://npm.pkg.github.com
 ```
 
-You can also install directly from git master
+You can also install directly from current repo master
 ```bash
 # npm
 npm i vincecao/use-tools
@@ -39,19 +42,19 @@ yarn add github:vincecao/use-tools
 ```
 
 ### Release Method
-- Github Actions will create and publish a beta version, when a Pull Request is merged to the master.
-- Github Actions will create and publish a stable version, when a Release is created with a new tag version.
+- When a Pull Request is merged to the master, Github Actions will create and publish a beta version.
+- When a Release is created with a new tag version, Github Actions will create and publish a stable version.
 
 ## Demo
 
 Please check more samples at below
-- [Demo Site](https://vince-amazing.com/use-tools/)
+- [**Demo Site**](https://vince-amazing.com/use-tools/)
 - [Code Sample](https://github.com/vincecao/use-tools/tree/master/example)
 
 ## Hooks
 ### usePromiseState
 
-A hook that allows user to retrieve data from a remote by a `promise` function. It takes a required promise and optional options as inputs, return `data`, `error` `status` and useful `callbacks`.
+A hook that allows user to retrieve data from a `promise`. It takes a required `promise` function and optional `callbacks` and `dependencyList` as inputs, then return `data`, `error`, `status`, `setData` and `refetch` function.
 
 ```tsx
 const [remoteData, { error, status, refetch }, setRemoteData] = usePromiseState<T>(promise, {
@@ -62,10 +65,10 @@ const [remoteData, { error, status, refetch }, setRemoteData] = usePromiseState<
   onFinal
 })
 ```
-_The `promise` needs to be wrapped with [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback) and `options` needs to be wrapped with [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) if it is not `undefined`_.
+_The `promise` needs to be wrapped with [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback) and `options` needs to be wrapped with [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) if it is not `undefined`, Because each time they are updated, the `promise` function will be called inside a `useEffect`.
 ## useTimeout
 
-A simple implementation of `useTimeout` hook. The changes of `promise` will reset timeout delay. The `disable` option pause entire hook, `disableDelay` remove `setTimeout` behavior.
+A simple implementation of `useTimeout` hook. The changes of `promise` will reset timeout delay. The `disable` option will pause entire hook, `disableDelay` will remove `setTimeout` behavior so function be called immediately.
 
 ```tsx
 useTimeout<T>(func, delay, disabled, disableDelay)
@@ -75,7 +78,7 @@ _The `func` needs to be wrapped with [useCallback](https://reactjs.org/docs/hook
 
 ## useShuttle
 
-A hook returns a shuttled list for each unique given array. The changes of array will also trigger re-generate a new shuttled list.
+A hook returns a new shuttled list for each unique given array. The changes of array will trigger re-generating a new shuttled list.
 
 ```tsx
 const shuttled = useShuttle<T>(array)
