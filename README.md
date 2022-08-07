@@ -10,7 +10,7 @@ A group of reusable custom hooks for making react developer life easier.
 | [usePromiseState][usePromiseState-link] | Retrieving data from a remote by a `promise` function and use it like `useState`. |
 | [useTimeout][useTimeout-link] | Connecting `setTimeout` into React state world. |
 | [useShuttle][useShuttle-link] | A hook returns a new shuttled list for each unique given array. |
-| [useFetch][useFetch-link] | A convenient wrapper for `$fetch` function. |
+| [useFetch][useFetch-link] | A convenient wrapper for `$fetch` function. React implementation of `useLazyFetch` from [Nuxt3](https://v3.nuxtjs.org/api/composables/use-lazy-fetch) API. |
 ## Installation
 
 ```bash
