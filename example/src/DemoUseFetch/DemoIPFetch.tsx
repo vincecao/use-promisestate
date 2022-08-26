@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useFetch } from '../../..';
+import { useFetch } from '@vincecao/use-tools';
 import Button from '../components/Button';
 import CodeBlock from '../components/CodeBlock';
 import Input from '../components/Input';
@@ -17,13 +17,13 @@ export default function DemoIPFetch(): React.ReactElement {
 
   const options = React.useMemo(
     () => ({
-      baseURL: 'http://ip-api.com/json/',
+      baseURL: 'https://ipapi.co/',
     }),
     []
   );
 
   const { data, pending, error, refresh } = useFetch<string>(
-    ipDefault?.['ip'] && (ipSearch.current || ipDefault?.['ip']),
+    `${ipDefault?.['ip'] && (ipSearch.current || ipDefault?.['ip'])}/json/`,
     options
   );
   return (
@@ -33,10 +33,10 @@ export default function DemoIPFetch(): React.ReactElement {
         <CodeBlock
           type="typescript"
           sourceHref="/example/src/DemoUseFetch/DemoIPFetch.tsx"
-          codeString={`const options = useMemo(() => ({ baseURL: 'http://ip-api.com/json/' }), []);
+          codeString={`const options = useMemo(() => ({ baseURL: 'https://ipapi.co/' }), []);
 
 const { data, pending, error, refresh } = useFetch<string>(
-  '${ipSearch.current || ipDefault?.['ip']}',
+  '${ipSearch.current || ipDefault?.['ip']}' + '/json/',
   options
 );`}
         />
@@ -47,7 +47,7 @@ const { data, pending, error, refresh } = useFetch<string>(
             IP
             <Input
               value={ipSearch.input}
-              placeholder={ipSearch.current || 'Type a new IP address to search'}
+              placeholder={ipSearch.current || 'Type a new IP address to search. e.g. 8.8.8.8'}
               onChange={value => {
                 setIpSearch(prev => ({ ...prev, input: value }));
               }}

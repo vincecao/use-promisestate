@@ -24,7 +24,7 @@ function Input(
   return (
     <input
       className={classNames(
-        'm-1 p-1 px-2 border rounded bg-white focus:outline-cyan-500/50',
+        'm-1 p-1 px-2 border rounded bg-white dark:bg-stone-900 border-stone-500 focus:outline-none focus:ring focus:ring-cyan-300/20',
         {
           'cursor-not-allowed opacity-50': disabled,
         }

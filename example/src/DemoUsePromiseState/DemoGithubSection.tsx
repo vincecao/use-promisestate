@@ -5,7 +5,7 @@ import {
   usePromiseState,
   UsePromiseStateOptions,
   UsePromiseStatePromise,
-} from '../../..';
+} from '@vincecao/use-tools';
 import Anchor from '../components/Anchor';
 import Button from '../components/Button';
 import Code from '../components/Code';
@@ -97,8 +97,6 @@ const [data, { error, status, refetch }] = usePromiseState<ResponseType>(
             change or change
             <Code>username</Code>for a new search.
           </p>
-
-          <hr className="my-5 w-3/4 mx-auto" />
 
           <span className="flex justify-between">
             <label>
