@@ -34,7 +34,7 @@ export default function usePromiseState<T>(
   const [status, setStatus] = useState<UsePromiseStatus>('waiting');
 
   const debouncedPromise = useRef(
-    debounce(fetch => {
+    debounce((fetch: () => Promise<void>) => {
       if (status !== 'pending') fetch();
     }, options?.debounceDelay || DEFAULT_DEBOUNCE_DELAY)
   ).current;

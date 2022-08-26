@@ -1,7 +1,7 @@
 import { $fetch } from 'ohmyfetch';
 import * as React from 'react';
 
-import { usePromiseState } from '../../..';
+import { usePromiseState } from '@vincecao/use-tools';
 import Button from '../components/Button';
 import CodeBlock from '../components/CodeBlock';
 import SampleSection from '../components/SampleSection';

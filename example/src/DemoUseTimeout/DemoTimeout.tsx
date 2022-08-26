@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useTimeout } from '../../..';
+import { useTimeout } from '@vincecao/use-tools';
 import Button from '../components/Button';
 import Code from '../components/Code';
 import CodeBlock from '../components/CodeBlock';
