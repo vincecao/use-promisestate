@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel index.html",
-    "build": "npm style && parcel build index.html --public-url ./",
+    "build": "npm run style && parcel build index.html --public-url ./",
     "style": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
     "style:watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
