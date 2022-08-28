@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { Appearance, useAppearance } from '../../../';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
 import { vscDarkPlus, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -21,13 +21,7 @@ export default function CodeBlock({
   children,
 }: CodeBlockProps) {
 
-  const [mode, setMode] = useState('light')
-
-  useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setMode('dark')
-    }
-  }, []);
+  const { appearance } = useAppearance();
 
   return (
     <div className="text-xs my-3">
@@ -45,7 +39,7 @@ export default function CodeBlock({
       </span>
 
       <div className="max-h-64 overflow-x-auto">
-        <SyntaxHighlighter language={language} style={mode === 'light' ? oneLight: vscDarkPlus}>{codeString}</SyntaxHighlighter>
+        <SyntaxHighlighter language={language} style={appearance === Appearance.LIGHT ? oneLight: vscDarkPlus}>{codeString}</SyntaxHighlighter>
       </div>
       {children}
     </div>

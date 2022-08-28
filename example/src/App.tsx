@@ -9,6 +9,8 @@ import DemoUsePromiseState from './DemoUsePromiseState';
 import DemoUseShuttle from './DemoUseShuttle';
 import DemoUseTimeout from './DemoUseTimeout';
 import DemoUseFetch from './DemoUseFetch';
+import Button from './components/Button';
+import DemoUseAppearance from './DemoUseAppearance';
 
 export default function App() {
   return (
@@ -56,6 +58,13 @@ export default function App() {
         <HookSection title="useFetch">
           <DemoUseFetch />
         </HookSection>
+
+        <hr/>
+
+        <HookSection title="useAppearance">
+          <DemoUseAppearance />
+        </HookSection>
+
       </div>
       <Footer>
         <span>

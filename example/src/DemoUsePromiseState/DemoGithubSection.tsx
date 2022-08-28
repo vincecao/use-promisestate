@@ -5,7 +5,7 @@ import {
   usePromiseState,
   UsePromiseStateOptions,
   UsePromiseStatePromise,
-} from '@vincecao/use-tools';
+} from '../../../';
 import Anchor from '../components/Anchor';
 import Button from '../components/Button';
 import Code from '../components/Code';

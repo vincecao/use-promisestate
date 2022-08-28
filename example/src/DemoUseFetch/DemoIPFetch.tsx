@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useFetch } from '@vincecao/use-tools';
+import { useFetch } from '../../../';
 import Button from '../components/Button';
 import CodeBlock from '../components/CodeBlock';
 import Input from '../components/Input';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useShuttle } from '@vincecao/use-tools';
+import { useShuttle } from '../../../';
 import Button from '../components/Button';
 import Code from '../components/Code';
 import CodeBlock from '../components/CodeBlock';
