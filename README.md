@@ -11,7 +11,7 @@ A group of reusable custom hooks for making react developer life easier.
 | [useTimeout][useTimeout-link] | Connecting `setTimeout` into React state world. |
 | [useShuttle][useShuttle-link] | A hook returns a new shuttled list for each unique given array. |
 | [useFetch][useFetch-link] | A convenient wrapper for `$fetch` function. React implementation of `useLazyFetch` from [Nuxt3](https://v3.nuxtjs.org/api/composables/use-lazy-fetch) API. |
-| [useAppearance][useAppearance-link] | Detect current system appearance setting |
+| [useAppearance][useAppearance-link] | A Hook with its Provider allows you to read or override current os appearance preference. |
 
 ## Example
 
@@ -22,13 +22,13 @@ Please check more examples at below links
 ## Installation
 
 ```bash
-# latest
+# Install latest package
 # npm
 npm i @vincecao/use-tools
 # yarn
 yarn add @vincecao/use-tools
 
-# beta
+# Install beta package
 # npm
 npm i @vincecao/use-tools@beta
 # yarn
