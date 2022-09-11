@@ -36,9 +36,16 @@ export function AppearanceProvider({ children }: AppearanceProviderProps): React
   const [osAppearance, setOsAppearance] = useState<Appearance | null>(DEFAULT_USE_APPEARANCE.osAppearance);
 
   // Current user appearance setting preference
-  const [appearance, setAppearance] = useState<Appearance>(localStorage.getItem('@@appearance@@') as Appearance || DEFAULT_USE_APPEARANCE.appearance);
+  const [appearance, setAppearance] = useState<Appearance>(DEFAULT_USE_APPEARANCE.appearance);
 
-  // Assign current os appearance setting to appearance state
+  useEffect(() => {
+    // Load stored appearance from useEffect for support server side rendering
+    if (localStorage && localStorage.getItem('@@appearance@@')) {
+      setAppearance(localStorage.getItem('@@appearance@@') as Appearance);
+    }
+  }, []);
+
+  // Assign current os appearance setting to osAppearance state
   useEffect(() => {
     const matchDarkMedia = window.matchMedia?.('(prefers-color-scheme: dark)');
 
@@ -64,9 +71,9 @@ export function AppearanceProvider({ children }: AppearanceProviderProps): React
     setAppearance(newAppearance);
   }
 
-  // when os appearance preference changes, call modifyAppearanceWithClass
+  // When os appearance preference changes, call modifyAppearanceWithClass
   useEffect(() => {
-    // change user appearance until os appearance is valid
+    // Change user appearance until os appearance is valid
     if (!osAppearance) return;
 
     const isDark =
@@ -86,7 +93,7 @@ export function AppearanceProvider({ children }: AppearanceProviderProps): React
 
   // Manually reset user appearance preference to os appearance preference
   function onAppearanceResetToOs() {
-    // allow to reset back to os appearance until it is valid
+    // Allow user to reset back os appearance if it is valid
     if (!osAppearance) {
       console.error('os appearance is not ready.');
       return;
