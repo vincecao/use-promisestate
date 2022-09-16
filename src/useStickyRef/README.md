@@ -9,3 +9,5 @@ It provides two sticky type options, `top-sticky` or `bottom-sticky`. With some 
 ```tsx
 const [stickyEnabled, stickyGateRef] = useStickyRef(type: 'top' | 'bottom', offset : number);
 ```
+
+https://user-images.githubusercontent.com/17363908/190549797-b17a5736-0915-4b70-8d87-d0cd2423c494.mov

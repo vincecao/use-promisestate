@@ -28,10 +28,10 @@ export default function Index(): ReactElement {
           <CodeBlock
             type="typescript"
             sourceHref="/example/src/DemoUseStickyRef/DemoStickyRef.tsx"
-            codeString={`// Create a top sticky hook for first example
+            codeString={`// Create a top sticky hook for first example (element height + header height)
 const [topStickyEnabled, topStickyGateRef] = useStickyRef('top', 256);
 
-// Create a bottom sticky hook for second example
+// Create a bottom sticky hook for second example (element height + gate height + header height)
 const [bottomStickyEnabled, bottomStickyGateRef] = useStickyRef('bottom', 256 + 64);`}
           />
         }
@@ -41,7 +41,7 @@ const [bottomStickyEnabled, bottomStickyGateRef] = useStickyRef('bottom', 256 + 
               <Button text={`${demoView ? 'End' : 'Start'} Sticky Demo View`} onClick={() => SetDemoView(!demoView)} />
             </div>
 
-            <div className={classNames({ 'hidden': !demoView })}>
+            <div className={classNames('z-50', { 'hidden': !demoView })}>
               <DemoUseStickyRef />
             </div>
           </>
