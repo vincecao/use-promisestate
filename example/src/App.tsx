@@ -9,8 +9,8 @@ import DemoUsePromiseState from './DemoUsePromiseState';
 import DemoUseShuttle from './DemoUseShuttle';
 import DemoUseTimeout from './DemoUseTimeout';
 import DemoUseFetch from './DemoUseFetch';
-import Button from './components/Button';
 import DemoUseAppearance from './DemoUseAppearance';
+import DemoUseStickyRef from './DemoUseStickyRef'
 
 export default function App() {
   return (
@@ -63,6 +63,10 @@ export default function App() {
 
         <HookSection title="useAppearance">
           <DemoUseAppearance />
+        </HookSection>
+
+        <HookSection title="useStickyRef">
+          <DemoUseStickyRef />
         </HookSection>
 
       </div>

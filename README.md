@@ -11,7 +11,8 @@ A group of reusable custom hooks for making react developer life easier.
 | [useTimeout][useTimeout-link] | Connecting `setTimeout` into React state world. |
 | [useShuttle][useShuttle-link] | A hook returns a new shuttled list for each unique given array. |
 | [useFetch][useFetch-link] | A convenient wrapper for `$fetch` function. React implementation of `useLazyFetch` from [Nuxt3](https://v3.nuxtjs.org/api/composables/use-lazy-fetch) API. |
-| [useAppearance][useAppearance-link] | A Hook with its Provider allows you to read or override current os appearance preference. |
+| [useAppearance][useAppearance-link] | A hook as well as its provider allow you to override or reset current appearance based on system preference. |
+| [useStickyRef][useStickyRef-link] | One reusable hook for returning a `sticky` boolean flag based on designated gate element window position. |
 
 ## Example
 
@@ -75,3 +76,4 @@ yarn start
 [useShuttle-link]: https://github.com/vincecao/use-tools/tree/master/src/useShuttle
 [useFetch-link]: https://github.com/vincecao/use-tools/tree/master/src/useFetch
 [useAppearance-link]: https://github.com/vincecao/use-tools/tree/master/src/useAppearance
+[useStickyRef-link]: https://github.com/vincecao/use-tools/tree/master/src/useStickyRef
