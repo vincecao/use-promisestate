@@ -1,21 +1,19 @@
 {
   "name": "use-tools-example",
   "version": "1.0.2",
-  "main": "index.tsx",
   "license": "MIT",
   "scripts": {
     "prestart": "npm run tailwindcss",
     "start": "run-p start:*",
     "start:style": "npm run tailwindcss -- --watch",
-    "start:parcel": "parcel index.html",
+    "start:parcel": "parcel ./index.html",
     "build": "run-s build:*",
     "build:style": "npm run tailwindcss -- --prod",
-    "build:parcel": "parcel build index.html --public-url ./",
+    "build:parcel": "parcel build ./index.html --public-url ./",
     "tailwindcss": "npx tailwindcss -i ./src/input.css -o ./src/output.css"
   },
   "dependencies": {
     "classnames": "^2.3.1",
-    "npm-run-all": "^4.1.5",
     "react-app-polyfill": "^3.0.0",
     "react-syntax-highlighter": "^15.5.0"
   },
@@ -27,8 +25,10 @@
   "devDependencies": {
     "@types/react": "../node_modules/@types/react",
     "@types/react-dom": "../node_modules/@types/react-dom",
+    "npm-run-all": "^4.1.5",
     "parcel": "1.12.3",
-    "tailwindcss": "^3.1.8",
+    "postcss": "^8.4.16",
+    "tailwindcss": "3.0.10",
     "typescript": "../node_modules/typescript"
   }
 }
