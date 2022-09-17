@@ -33,7 +33,7 @@ export default function DemoIPFetch(): React.ReactElement {
         <CodeBlock
           type="typescript"
           sourceHref="/example/src/DemoUseFetch/DemoIPFetch.tsx"
-          codeString={`const options = useMemo(() => ({ baseURL: 'https://ipapi.co/' }), []);
+          codeString={`const options = useMemo(() => ({ baseURL: 'https://ipapi.co/', headers: { 'mock-header-key': 'mock-header-value' } }), []);
 
 const { data, pending, error, refresh } = useFetch<string>(
   '${ipSearch.current || ipDefault?.['ip']}' + '/json/',

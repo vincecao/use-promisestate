@@ -4,7 +4,7 @@ export type UseFetchOptions = {
   method?: string;
   params?: SearchParams;
   body?: RequestInit['body'] | Record<string, any>;
-  headers?: { key: string; value: string }[];
+  headers?: RequestInit['headers'] | Record<string, string>;
   baseURL?: string;
 };
 

@@ -7,7 +7,7 @@ import { UseFetchOptions, UseFetch } from './type';
  * This hook is a react mimic implementation of useLazyFetch from Nuxt3
  * https://v3.nuxtjs.org/api/composables/use-lazy-fetch
  *
- * This hook provides a convenient wrapper for $fetch
+ * This hook provides a convenient wrapper for $fetch. since `options` change will cause the hook re-fetch again, options need to be wrapped with `useMemo`.
  * @param url fetch url
  * @param options options for method, params, body, headers and baseURL, check [ohmyfetch](https://github.com/unjs/ohmyfetch) for more.
  * @returns { data, pending, refresh, error }
@@ -30,7 +30,7 @@ export default function useFetch<T = unknown>(
     if (!url) throw new Error('Missing URL');
     init();
     try {
-      const result = await $fetch(url, options as FetchOptions<"json">);
+      const result = await $fetch<T>(url, options as FetchOptions<"json">);
       setData(result);
     } catch (e) {
       setError(e as Error);

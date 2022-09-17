@@ -25,6 +25,7 @@ export default function DemoUsePromiseState(): React.ReactElement {
           . It provides a convenient wrapper for <Anchor href="https://github.com/unjs/ohmyfetch">ohmyfetch</Anchor> with a given URL and
           options.
         </p>
+        <p>Since <Code>options</Code> change will cause the hook re-fetch again, options need to be wrapped with <Code>useMemo</Code></p>
       </CodeBlock>
       <DemoIPFetch />
     </>
