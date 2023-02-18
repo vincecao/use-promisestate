@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Appearance, useAppearance } from '../../../';
+import { useAppearance } from '../../../';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
 import { vscDarkPlus, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -39,7 +39,7 @@ export default function CodeBlock({
       </span>
 
       <div className="max-h-64 overflow-x-auto">
-        <SyntaxHighlighter language={language} style={appearance === Appearance.LIGHT ? oneLight: vscDarkPlus}>{codeString}</SyntaxHighlighter>
+        <SyntaxHighlighter language={language} style={appearance === 'light' ? oneLight: vscDarkPlus}>{codeString}</SyntaxHighlighter>
       </div>
       {children}
     </div>

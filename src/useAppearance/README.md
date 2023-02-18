@@ -1,6 +1,6 @@
 ## useAppearance
 
-A Hook with its Provider allows you to read or override current os appearance preference. 
+A Hook allows you to read os appearance and update website class preference.
 
 The hook uses [Window.matchMedia() API](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to detect and modify user appearance preference setting for the project. 
 
@@ -8,20 +8,6 @@ A `light` and `dark` class will be added into the html tag once user appearance 
 
 
 ```tsx
-import { useAppearance, AppearanceProvider } from '@vincecao/use-tools';
-
-type UseAppearance = {
-  osAppearance: Appearance | null;
-  appearance: Appearance;
-  onAppearanceToggle: () => void;
-  onAppearanceResetToOs: () => void;
-};
-
-// Wrap your entire app or target children component inside appearance provider
-<AppearanceProvider>
-  <App />
-</AppearanceProvider>
-
-// Access current appearance and osAppearance, function onAppearanceResetToOs and onAppearanceToggle by useAppearance hook
-const useAppearanceValue = useAppearance<UseAppearance>();
+import { useAppearance } from '@vincecao/use-tools';
+const { appearance, toggleAppearance, resetAppearance } = useAppearance();
 ```
