@@ -8,10 +8,10 @@ function shuffle<T>(array: T[]): T[] {
 }
 
 /**
- * Shuttle an array each time it changed
+ * Shuffle an array each time it changed
  * @param array any type of list
- * @returns a new shuttled list for each given array
+ * @returns a new shuffled list for each given array
  */
-export default function useShuttle<T = unknown>(array: T[]): T[] {
+export default function useShuffle<T = unknown>(array: T[]): T[] {
   return useMemo(() => shuffle(array), [array]);
 }

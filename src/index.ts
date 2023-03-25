@@ -1,7 +1,7 @@
 export { default as usePromiseState } from './usePromiseState';
 export * from './usePromiseState/type';
 
-export { default as useShuttle } from './useShuttle';
+export { default as useShuffle } from './useShuffle';
 
 export { default as useTimeout } from './useTimeout';
 export * from './useTimeout/type';

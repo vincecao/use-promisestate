@@ -9,7 +9,7 @@ A group of reusable custom hooks for making react developer life easier.
 | ----------- | ----------- |
 | [usePromiseState][usePromiseState-link] | Retrieving data from a remote by a `promise` function and use it like `useState`. |
 | [useTimeout][useTimeout-link] | Connecting `setTimeout` into React state world. |
-| [useShuttle][useShuttle-link] | A hook returns a new shuttled list for each unique given array. |
+| [useShuffle][useShuffle-link] | A hook returns a new shuffled list for each unique given array. |
 | [useFetch][useFetch-link] | A convenient wrapper for `$fetch` function. React implementation of `useLazyFetch` from [Nuxt3](https://v3.nuxtjs.org/api/composables/use-lazy-fetch) API. |
 | [useAppearance][useAppearance-link] | A hook as well as its provider allow you to override or reset current appearance based on system preference. |
 | [useStickyRef][useStickyRef-link] | One reusable hook for returning a `sticky` boolean flag based on designated gate element window position. |
@@ -73,7 +73,7 @@ yarn start
 
 [usePromiseState-link]: https://github.com/vincecao/use-tools/tree/master/src/usePromiseState
 [useTimeout-link]: https://github.com/vincecao/use-tools/tree/master/src/useTimeout
-[useShuttle-link]: https://github.com/vincecao/use-tools/tree/master/src/useShuttle
+[useShuffle-link]: https://github.com/vincecao/use-tools/tree/master/src/useShuffle
 [useFetch-link]: https://github.com/vincecao/use-tools/tree/master/src/useFetch
 [useAppearance-link]: https://github.com/vincecao/use-tools/tree/master/src/useAppearance
 [useStickyRef-link]: https://github.com/vincecao/use-tools/tree/master/src/useStickyRef

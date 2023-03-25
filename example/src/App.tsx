@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import HookSection from './components/HookSection';
 import DemoUsePromiseState from './DemoUsePromiseState';
-import DemoUseShuttle from './DemoUseShuttle';
+import DemoUseShuffle from './DemoUseShuffle';
 import DemoUseTimeout from './DemoUseTimeout';
 import DemoUseFetch from './DemoUseFetch';
 import DemoUseAppearance from './DemoUseAppearance';
@@ -49,8 +49,8 @@ export default function App() {
 
         <hr/>
 
-        <HookSection title="useShuttle">
-          <DemoUseShuttle />
+        <HookSection title="useShuffle">
+          <DemoUseShuffle />
         </HookSection>
 
         <hr/>
