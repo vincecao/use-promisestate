@@ -17,7 +17,7 @@ A group of reusable custom hooks for making react developer life easier.
 ## Example
 
 Please check more examples at below links
-- [**Demo Site**](https://vince-amazing.com/use-tools/)
+- [**Demo Site**](https://vincecao.github.io/use-tools)
 - [Code Sample](https://github.com/vincecao/use-tools/tree/master/example)
 
 ## Installation
